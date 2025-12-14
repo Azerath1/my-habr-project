@@ -87,3 +87,4 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     except Exception as e:
         logger.error(f"❌ Ошибка при входе: {str(e)}")
         raise AppException("Ошибка входа", 500)
+    

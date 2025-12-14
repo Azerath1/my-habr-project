@@ -1,58 +1,78 @@
-# Python / FastAPI
+# === Python / FastAPI ===
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
+*.egg-info/
+.dist/
+.build/
 eggs/
 .eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
 wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+pip-delete-this-directory.txt
 
 # Virtual environments
 venv/
 env/
 ENV/
 .venv/
-.env/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Database (твоя SQLite БД)
-*.db
-*.sqlite3
-simple_habr.db
+.env
+.env.local
+.env.*.local
 
 # Logs
 *.log
 logs/
 app.log
 
-# OS files
+# Database
+*.db
+*.sqlite
+*.sqlite3
+simple_habr.db
+
+# === Next.js / Frontend ===
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# TypeScript
+*.tsbuildinfo
+
+# === IDE / Editors ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
 Thumbs.db
 
-# Testing / Coverage
+# === Testing / Coverage ===
 .pytest_cache/
 .coverage
 htmlcov/
 .tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
 
-# Frontend node_modules (если добавишь npm позже)
-node_modules/
+# === OS / Misc ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Optional (если используешь) ===
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
