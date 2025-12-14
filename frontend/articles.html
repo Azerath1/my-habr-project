@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Статьи</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Статьи</h1>
+      <a href="index.html">Назад</a>
+      <button id="createArticleBtn" style="display: none">
+        Создать статью
+      </button>
+    </header>
+    <main id="articlesList"></main>
+    <script src="scripts.js"></script>
+    <script>
+      checkAuth(); // Проверяем авторизацию
+      loadArticles(); // Загружаем список статей
+      document
+        .getElementById("createArticleBtn")
+        .addEventListener(
+          "click",
+          () => (window.location.href = "create-article.html")
+        );
+    </script>
+  </body>
+</html>
