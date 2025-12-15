@@ -1,14 +1,14 @@
+# app/routers/articles.py
 from fastapi import APIRouter, Depends, Body, status
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from typing import List
 
 from ..schemas import ArticleCreate, ArticleResponse
-from ..models import Article, User  # User тоже из models
+from ..models import Article, User
 from ..dependencies import get_db, get_current_user
 from ..exceptions import AppException
 from ..config import logger
-from ..models import User
 
 router = APIRouter(prefix="/articles", tags=["Статьи"])
 

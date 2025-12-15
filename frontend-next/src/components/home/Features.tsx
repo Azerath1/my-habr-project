@@ -1,3 +1,4 @@
+// src/components/home/Features.tsx - улучшенный с анимациями
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sparkles, Users, Shield } from "lucide-react";
 
@@ -8,33 +9,34 @@ export default function Features() {
       title: "Интуитивно и просто",
       description:
         "Создавай статьи за минуты без сложных настроек. Фокус на контенте.",
-      color: "text-blue-600",
+      color: "text-blue-500",
     },
     {
       icon: Users,
       title: "Живое сообщество",
       description: "Читай, комментируй и обсуждай статьи с единомышленниками.",
-      color: "text-purple-600",
+      color: "text-purple-500",
     },
     {
       icon: Shield,
       title: "Безопасность на первом месте",
       description:
         "Современная аутентификация и защита данных. Твои статьи в надёжных руках.",
-      color: "text-indigo-600",
+      color: "text-indigo-500",
     },
   ];
 
   return (
     <section className="py-20 container mx-auto px-4">
-      <h2 className="text-4xl font-bold text-center mb-12">
+      <h2 className="text-4xl font-bold text-center mb-12 animate-slideIn">
         Почему выбирают Simple Habr?
       </h2>
       <div className="grid md:grid-cols-3 gap-8">
-        {features.map((feature) => (
+        {features.map((feature, index) => (
           <Card
             key={feature.title}
-            className="hover:shadow-xl transition-shadow duration-300"
+            className="hover:shadow-2xl transition-shadow duration-300 animate-fadeIn"
+            style={{ animationDelay: `${index * 0.2}s` }}
           >
             <CardHeader className="text-center">
               <feature.icon

@@ -1,12 +1,13 @@
+// src/components/home/Hero.tsx - улучшенный дизайн
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-blue-600 via-purple-600 to-indigo-700 text-white py-32">
-      <div className="absolute inset-0 bg-black opacity-30"></div>
-      <div className="relative container mx-auto text-center px-4">
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
+    <section className="relative overflow-hidden bg-linear-to-br from-primary to-primary-foreground text-foreground py-32 rounded-xl shadow-2xl">
+      <div className="absolute inset-0 bg-background/10 backdrop-blur-sm"></div>
+      <div className="relative container mx-auto text-center px-4 animate-fadeIn">
+        <h1 className="text-5xl md:text-6xl font-bold mb-6">
           Simple Habr — Твой блог для знаний
         </h1>
         <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90">
@@ -17,7 +18,8 @@ export default function Hero() {
           <Link href="/register">
             <Button
               size="lg"
-              className="bg-white text-blue-600 hover:bg-gray-100"
+              variant="secondary"
+              className="hover:scale-105 transition-transform"
             >
               Начать сейчас
             </Button>
@@ -26,14 +28,13 @@ export default function Hero() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-black hover:bg-white/20"
+              className="hover:scale-105 transition-transform"
             >
               Посмотреть статьи
             </Button>
           </Link>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-linear-to-t from-background to-transparent"></div>
     </section>
   );
 }

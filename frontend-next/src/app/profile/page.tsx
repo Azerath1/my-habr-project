@@ -1,4 +1,4 @@
-// src/app/profile/page.tsx (новая страница профиля)
+// frontend-next/src/app/profile/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -21,7 +21,6 @@ interface UserProfile {
   id: number;
   username: string;
   created_at: string;
-  // Если backend вернёт больше данных — добавь
 }
 
 export default function Profile() {
@@ -30,7 +29,6 @@ export default function Profile() {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
-  const [profileError, setProfileError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -40,14 +38,8 @@ export default function Profile() {
 
     const fetchData = async () => {
       try {
-        setProfileError(null);
-
-        // Пока мокаем user (потом можно будет заменить на реальный запрос)
-        setUser({
-          id: 1,
-          username: username || "",
-          created_at: new Date().toISOString(),
-        });
+        const userData = await apiFetch<UserProfile>("/users/me");
+        setUser(userData);
 
         const allArticles = await apiFetch<Article[]>("/articles");
         const userArticles = allArticles.filter(
@@ -55,20 +47,7 @@ export default function Profile() {
         );
         setArticles(userArticles);
       } catch (error: unknown) {
-        // Используем переменную error
-        let errorMessage = "Ошибка загрузки профиля";
-
-        if (error instanceof Error) {
-          errorMessage = `${errorMessage}: ${error.message}`;
-        } else if (typeof error === "string") {
-          errorMessage = `${errorMessage}: ${error}`;
-        }
-
-        console.error("Ошибка загрузки профиля:", error);
-        setProfileError(errorMessage);
-
-        // Показать пользователю ошибку через UI, а не alert
-        // (или использовать toast уведомление)
+        alert("Ошибка загрузки профиля");
       } finally {
         setLoading(false);
       }
@@ -81,12 +60,6 @@ export default function Profile() {
 
   return (
     <div className="container mx-auto mt-10">
-      {profileError && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-          <p>{profileError}</p>
-        </div>
-      )}
-
       <div className="flex items-center space-x-4 mb-8">
         <Avatar className="w-20 h-20">
           <AvatarImage
@@ -102,7 +75,6 @@ export default function Profile() {
           </p>
         </div>
       </div>
-
       <h2 className="text-2xl font-bold mb-4">Мои статьи</h2>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {articles.length > 0 ? (
@@ -120,11 +92,7 @@ export default function Profile() {
             </Card>
           ))
         ) : (
-          <div className="col-span-full">
-            <p className="text-center text-gray-500 py-8">
-              У вас пока нет статей.
-            </p>
-          </div>
+          <p>У вас пока нет статей.</p>
         )}
       </div>
     </div>

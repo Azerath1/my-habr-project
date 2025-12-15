@@ -1,4 +1,4 @@
-// src/app/login/page.tsx (переход на главную + setUser)
+// frontend-next/src/app/login/page.tsx
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -31,9 +31,9 @@ export default function Login() {
           username
         )}&password=${encodeURIComponent(password)}`,
       });
-      setUser(data.access_token, data.username); // ← Сохраняем username
+      setUser(data.access_token, data.username);
       alert("Вход успешен!");
-      router.push("/"); // ← Переход на главную
+      router.push("/");
     } catch (error: unknown) {
       let message = "Неизвестная ошибка";
       if (error instanceof Error) message = error.message;

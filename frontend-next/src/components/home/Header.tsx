@@ -1,3 +1,4 @@
+// frontend-next/src/components/Header.tsx
 "use client";
 
 import Link from "next/link";
@@ -20,7 +21,7 @@ import { usePathname } from "next/navigation";
 
 // Мобильное меню (Sheet)
 function MobileMenu() {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, username, logout } = useAuth();
   const pathname = usePathname();
 
   const navItems = [

@@ -1,4 +1,4 @@
-// src/app/register/page.tsx (переход на главную после успеха)
+// frontend-next/src/app/register/page.tsx
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -22,7 +22,7 @@ export default function Register() {
         body: JSON.stringify({ username, password }),
       });
       alert("Регистрация успешна! Теперь войдите.");
-      router.push("/"); // ← Переход на главную
+      router.push("/");
     } catch (error: unknown) {
       let message = "Неизвестная ошибка";
       if (error instanceof Error) message = error.message;

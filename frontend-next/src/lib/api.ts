@@ -1,3 +1,4 @@
+// frontend-next/src/lib/api.ts
 export const API_URL = "http://localhost:8000";
 
 export async function apiFetch<T = any>(
@@ -29,6 +30,5 @@ export async function apiFetch<T = any>(
     throw new Error(errorMessage);
   }
 
-  // Для /login возвращаем JSON, для других тоже
   return response.json() as Promise<T>;
 }

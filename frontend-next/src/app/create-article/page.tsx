@@ -1,3 +1,4 @@
+// frontend-next/src/app/create-article/page.tsx
 "use client";
 
 import { useEffect } from "react";
@@ -34,14 +35,9 @@ export default function CreateArticle() {
       alert("Статья создана!");
       router.push("/articles");
     } catch (error: unknown) {
-      // ← Заменили any на unknown
       let message = "Неизвестная ошибка";
-      if (error instanceof Error) {
-        message = error.message;
-      } else if (typeof error === "string") {
-        message = error;
-      }
-      alert("Ошибка входа: " + message);
+      if (error instanceof Error) message = error.message;
+      alert("Ошибка создания статьи: " + message);
     }
   };
 

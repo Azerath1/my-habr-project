@@ -1,3 +1,4 @@
+// frontend-next/src/app/articles/[id]/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -22,7 +23,9 @@ export default function ArticleDetail() {
   useEffect(() => {
     apiFetch<Article>(`/articles/${id}`)
       .then(setArticle)
-      .catch((error) => alert("Ошибка загрузки статьи: " + error.message))
+      .catch((error) =>
+        alert("Ошибка загрузки статьи: " + (error as Error).message)
+      )
       .finally(() => setLoading(false));
   }, [id]);
 

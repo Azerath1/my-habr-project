@@ -1,4 +1,4 @@
-// src/contexts/AuthContext.tsx (обновлённый для хранения username)
+// frontend-next/src/contexts/AuthContext.tsx
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
@@ -12,7 +12,6 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Инициализация из localStorage
 const initialToken =
   typeof window !== "undefined" ? localStorage.getItem("token") : null;
 const initialUsername =

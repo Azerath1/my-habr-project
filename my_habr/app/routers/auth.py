@@ -1,3 +1,4 @@
+# app/routers/auth.py
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
@@ -6,14 +7,14 @@ import uuid
 
 from ..schemas import UserAuth, UserResponse, TokenResponse
 from ..models import User
-from ..dependencies import get_db
+from ..dependencies import get_current_user, get_db
 from ..exceptions import UserExistsException, AuthenticationException, AppException
 from ..config import logger
 from fastapi.security import OAuth2PasswordRequestForm
 
 pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
-router = APIRouter(prefix="", tags=["Аутентификация"])  
+router = APIRouter(prefix="", tags=["Аутентификация"])
 
 @router.post(
     "/register",
@@ -87,4 +88,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     except Exception as e:
         logger.error(f"❌ Ошибка при входе: {str(e)}")
         raise AppException("Ошибка входа", 500)
-    
+
+@router.get("/users/me", response_model=UserResponse)
+def get_me(user: User = Depends(get_current_user)):
+    return UserResponse.from_orm(user)
